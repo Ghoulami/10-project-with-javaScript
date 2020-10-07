@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountDown Timer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container countdown_container">
+        <div id="btn_settings">
+            <span><i class="fas fa-sliders-h"></i></span>
+        </div>
+
+        <header id="countdown_title"><h1>Créer un compte à rebours</h1></header>
+        <div class="countdown">
+            <div class="countdown-el days-c">
+                <p class="big-text" id="days">0</p>
+                <span>Jours</span>
+            </div>
+
+            <div class="countdown-el hours-c">
+                <p class="big-text" id="hours">0</p>
+                <span>Hours</span>
+            </div>
+
+            <div class="countdown-el mins-c">
+                <p class="big-text" id="mins">0</p>
+                <span>Mins</span>
+            </div>
+
+            <div class="countdown-el secs-c">
+                <p class="big-text" id="secs">0</p>
+                <span>Secs</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container settings_container">
+        <header id="sittings_title"><h1>Paramètres</h1></header>
+
+        <form>
+            <div class="input_filde">
+                <label for="count_title">Titre :</label>
+                <input type="text" id="count_title">
+            </div>
+            <div class="date_piker">
+                <div class="date-el">
+                    <span>Jours :</span>
+                    <input type="number" step="1" id="s_days" value="0">
+                </div>
+    
+                <div class="date-el">
+                    <span>Hours :</span>
+                    <input type="number" step="1" id="s_hours" min="0" max="24" value="0"> 
+                </div>
+    
+                <div class="date-el">
+                    <span>Mins :</span>
+                    <input type="number" step="1" id="s_mins" min="0" max="60" value="0"> 
+                </div>
+    
+                <div class="date-el">
+                    <span>Secs :</span>
+                    <input type="number" step="1" id="s_secs" min="0" max="60" value="0"> 
+                </div>
+            </div>
+            <div class="controle"> 
+                <button type="submit" class="submit"><i class="fas fa-check"></i></button>
+                <button class="exit"><i class="fas fa-window-close"></i></button>
+            </div>
+        </form>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
