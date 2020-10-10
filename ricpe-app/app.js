@@ -164,7 +164,7 @@ async function addTofav(mealId) {
     fetchFavMeals();
   });
 
-  item.addEventListener("click", showInfos.bind(null, meal));
+  item.querySelector('img').addEventListener("click", showInfos.bind(null, meal));
   favMeal_container.querySelector("ul").appendChild(favMeal);
 }
 
