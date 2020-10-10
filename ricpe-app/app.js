@@ -1,13 +1,19 @@
 //selectors
 const fav_items = document.querySelectorAll(".fav_item");
 const meal_container = document.getElementById("meals");
-const favMeal_container = document.querySelector('.fav_container');
+const favMeal_container = document.querySelector(".fav_container");
 const favItemTempl = document.getElementById("favItem_template");
-const searchBtn = document.getElementById('search');
-const search_input = document.getElementById('search_input');
+const searchBtn = document.getElementById("search");
+const search_input = document.getElementById("search_input");
+const close_popup = document.getElementById("close-popup");
+const mealInfo_Container = document.querySelector(".meal-info-container");
+const mealInfo = document.querySelector("#meal-info");
 
 //event
-searchBtn.addEventListener("click" , randerMeals);
+searchBtn.addEventListener("click", randerMeals);
+close_popup.addEventListener("click", () => {
+  mealInfo_Container.style.display = "none";
+});
 //functions
 async function randomMeal() {
   const resp = await fetch(
@@ -60,70 +66,90 @@ function addMeal(mealData, isRandom = false) {
         </div>
     `;
 
-    const addFavBtn = meal.querySelector(".fav_btn");
-    addFavBtn.addEventListener("click", (event) => {
+  const addFavBtn = meal.querySelector(".fav_btn");
+  addFavBtn.addEventListener("click", (event) => {
     event.preventDefault();
 
-    if(event.target.classList.contains('active')){
+    if (event.target.classList.contains("active")) {
       removeMealFromLS(mealData.idMeal);
-      event.target.classList.remove('active');
-      favMeal_container.querySelector('ul').innerHTML = '';
+      event.target.classList.remove("active");
+      favMeal_container.querySelector("ul").innerHTML = "";
       fetchFavMeals();
-    }else{
-      event.target.classList.add('active')
+    } else {
+      event.target.classList.add("active");
       addMealToLS(mealData.idMeal);
-      favMeal_container.querySelector('ul').innerHTML = '';
+      favMeal_container.querySelector("ul").innerHTML = "";
       fetchFavMeals();
-    }  
+    }
   });
 
+  meal
+    .querySelector(".meal_header")
+    .addEventListener("click", showInfos.bind(null, mealData));
   meal_container.appendChild(meal);
 }
 
-function addMealToLS(mealId){
+function showInfos(mealData) {
+  let i = 0;
+  mealInfo.querySelector("h3").innerHTML = mealData.strMeal;
+  mealInfo.querySelector("img").setAttribute("src", mealData.strMealThumb);
+  mealInfo.querySelector("img").setAttribute("alt", mealData.strMeal);
+  mealInfo.querySelector("p").innerHTML = mealData.strInstructions;
+  for (key in mealData) {
+    if (key.search("strIngredient") >= 0 && mealData[key] !== "" && mealData[key] !==null) {
+      const newLi = document.createElement("li");
+      newLi.innerHTML = mealData[key]+' - '+ mealData['strMeasure'+i];
+      i++;
+      mealInfo.querySelector("ul").appendChild(newLi);
+    }
+  }
+  mealInfo_Container.style.display = "flex";
+}
+
+function addMealToLS(mealId) {
   let mealIds;
-  if(localStorage.getItem('mealIds') === null){
+  if (localStorage.getItem("mealIds") === null) {
     mealIds = [];
-  }else{
-    mealIds = JSON.parse(localStorage.getItem('mealIds'));
+  } else {
+    mealIds = JSON.parse(localStorage.getItem("mealIds"));
   }
 
   mealIds.push(mealId);
-  
-  localStorage.setItem('mealIds', JSON.stringify(mealIds));
+
+  localStorage.setItem("mealIds", JSON.stringify(mealIds));
 }
 
-function getMealfromLS(){
+function getMealfromLS() {
   let mealIds;
-  if(localStorage.getItem('mealIds') === null){
+  if (localStorage.getItem("mealIds") === null) {
     mealIds = [];
-  }else{
-    mealIds = JSON.parse(localStorage.getItem('mealIds'));
+  } else {
+    mealIds = JSON.parse(localStorage.getItem("mealIds"));
   }
 
   return mealIds;
 }
 
-function removeMealFromLS(mealId){
+function removeMealFromLS(mealId) {
   let mealIds;
-  if(localStorage.getItem('mealIds') === null){
+  if (localStorage.getItem("mealIds") === null) {
     mealIds = [];
-  }else{
-    mealIds = [...JSON.parse(localStorage.getItem('mealIds'))];
-    mealIds = mealIds.filter((id) => parseInt(id , 10) != mealId);
+  } else {
+    mealIds = [...JSON.parse(localStorage.getItem("mealIds"))];
+    mealIds = mealIds.filter((id) => parseInt(id, 10) != mealId);
   }
-  
-  localStorage.setItem('mealIds', JSON.stringify(mealIds));
+
+  localStorage.setItem("mealIds", JSON.stringify(mealIds));
 }
 
 async function addTofav(mealId) {
   const meal = await getMealById(mealId);
   const favMeal = favItemTempl.content.cloneNode(true);
-  const item = favMeal.querySelector('.fav_item');
+  const item = favMeal.querySelector(".fav_item");
 
-  favMeal.querySelector('img').setAttribute('src', meal.strMealThumb);
-  favMeal.querySelector('img').setAttribute('alt', meal.strMealThumb);
-  favMeal.querySelector('span').innerHTML = meal.strMeal;
+  favMeal.querySelector("img").setAttribute("src", meal.strMealThumb);
+  favMeal.querySelector("img").setAttribute("alt", meal.strMealThumb);
+  favMeal.querySelector("span").innerHTML = meal.strMeal;
 
   item.addEventListener("mouseenter", () => {
     item.querySelector("button").style.display = "block";
@@ -132,27 +158,28 @@ async function addTofav(mealId) {
     item.querySelector("button").style.display = "none";
   });
 
-  item.querySelector("button").addEventListener('click' , ()=>{
+  item.querySelector("button").addEventListener("click", () => {
     removeMealFromLS(mealId);
-    favMeal_container.querySelector('ul').innerHTML = '';
+    favMeal_container.querySelector("ul").innerHTML = "";
     fetchFavMeals();
-  })
-  favMeal_container.querySelector('ul').appendChild(favMeal);
+  });
+
+  item.addEventListener("click", showInfos.bind(null, meal));
+  favMeal_container.querySelector("ul").appendChild(favMeal);
 }
 
-function fetchFavMeals(){
+function fetchFavMeals() {
   const meals = getMealfromLS();
-  meals.forEach(id => addTofav(id));
+  meals.forEach((id) => addTofav(id));
 }
 
-async function randerMeals(){
+async function randerMeals() {
   const searchTerm = search_input.value;
-  search_input.value = '';
+  search_input.value = "";
   const meals = await searchMeal(searchTerm);
-  if(meals){
-    meals.forEach(meal => {
+  if (meals) {
+    meals.forEach((meal) => {
       addMeal(meal);
     });
   }
 }
-
