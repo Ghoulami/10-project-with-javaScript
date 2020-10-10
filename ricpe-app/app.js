@@ -90,7 +90,7 @@ function addMeal(mealData, isRandom = false) {
 }
 
 function showInfos(mealData) {
-  let i = 0;
+  let i = 1;
   mealInfo.querySelector("h3").innerHTML = mealData.strMeal;
   mealInfo.querySelector("img").setAttribute("src", mealData.strMealThumb);
   mealInfo.querySelector("img").setAttribute("alt", mealData.strMeal);
