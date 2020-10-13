@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;  
+  background-color: #36096d;
+  background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+header{
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.7rem 0.7rem 0 0;
+}
+
+#add-button{
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  width: 10rem;
+  color: whitesmoke;
+  background: linear-gradient(to right, #76b852, #8dc26f);
+  cursor: pointer;
+}
+
+.notes{
+  margin: 2rem 1rem 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.note{
+  width: 400px;
+  -webkit-box-shadow: 1px 2px 45px 11px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 2px 45px 11px rgba(0,0,0,0.75);
+  box-shadow: 1px 2px 45px 11px rgba(0,0,0,0.75);
+  border: none;
+  border-radius: 0.5rem;
+  margin: 1rem 0.8rem;
+}
+
+.note-header{
+  width: 100%;
+  background: linear-gradient(to right, #76b852, #8dc26f);
+  border-radius: 0.5rem 0.5rem 0 0 ;
+  padding: 0.4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.note-header button{
+  color: whitesmoke;
+  font-size: 1.2rem;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.note-body{
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.note-body textarea , .note-body p{
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0rem 0rem 0.5rem 0.5rem ;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.note-body p{
+  background-color: white;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.note-body textarea{
+  font-size: 1.5rem;
+}
+
+.hiden{
+  display: none;
+}
