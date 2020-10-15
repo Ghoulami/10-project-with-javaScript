@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos App</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>todos</h1>
+            <p>Left click to toggle complete.</p>
+            <p> Right click to delete the todo.</p>
+        </header>
+
+        <div class="todos-container">
+            <form class="input-form">
+                <input type="text" name="todo" id="todo-input" placeholder="Enter your todo heres">
+                <button class="submitBtn" id="submitBtn"><i class="fas fa-inbox"></i></button>
+            </form>
+           
+
+            <ul class="todos-list" id="todos-list">
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
