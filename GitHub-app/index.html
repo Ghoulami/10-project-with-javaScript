@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profiles</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <template id="card-template">
+        <div class="img-container">
+            <img src="https://avatars1.githubusercontent.com/u/6692364?v=4" alt="user name" id="user-img">
+        </div>
+
+        <div class="user-info">
+            <h2 class="user-name">Ghoulami Elmehdi</h2>
+            <p class="user-bio">JavaScript enthusiast 🙌, Front-end developer 💻 & Blogger 😍 at https://florin-pop.com</p>
+            <ul class="user-stat">
+                <li id="Followers">5555 <span>Followers</span></li>
+                <li id="Following">6666 <span>Following</span></li>
+                <li id="Repos">111 <span>Repos</span></li>
+            </ul>
+
+            <div class="repos">
+
+            </div>
+        </div>
+    </template>
+    <div class="app-continer">
+        <form id="user-search">
+            <input type="text" id="profileInput" placeholder="Search a GitHub user">
+        </form>
+        <div class="profile-card">
+            
+        </div>
+    </div>
+</body>
+</html>
