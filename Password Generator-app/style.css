@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins" , sans-serif;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rebeccapurple;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container{
+  background-color: rgb(46, 12, 80);
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  min-width: 400px;
+  max-width: 400px;
+  color: white;
+}
+
+.app-header{
+  background-color: rgb(70, 31, 109);
+  padding: 0.8rem;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.pw{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  height: 39px;
+}
+
+#copy{
+  position: absolute;
+  top: -0.8rem;
+  right: -0.8rem;
+  width: 3.5rem;
+  height: 4rem;
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0.3rem;
+  color: whitesmoke;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transform: translateY(52%);
+  transition: transform 0.2s ease-in;
+}
+
+#copy:focus{
+  outline: none;
+}
+
+#password{
+  max-width: 400px;
+  max-height: 2.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pw:hover #copy{
+  transform: translateY(0%);
+}
+
+
+.form-controle{
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0.3rem;
+}
+
+
+#generate{
+  background-color: rgb(236, 223, 33);
+  border: none;
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 600 ;
+  color: purple;
+  cursor: pointer;
+  margin: 1rem 0rem;
+  padding: 0.6rem;
+}
+
+#generate:focus{
+  outline: none;
+}
